@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WEAK HERO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', sans-serif;
+        }
+
+        :root {
+            --c1: #283C55;
+            --c2: #355070;
+            --c3: #6D597A;
+            --c4: #915F78;
+            --c5: #B56576;
+            --c6: #E56B6F;
+            --claro1: #EAAC8B;
+            --claro2: #EEBBA0;
+            --blanco: #ffffff;
+        }
+
+
+        body {
+            background: linear-gradient(135deg, rgba(40,60,85,0.92) 0%, rgba(53,80,112,0.88) 25%, rgba(109,89,122,0.85) 50%, rgba(145,95,120,0.8) 75%, rgba(181,101,118,0.75) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #video-fondo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .titulo-principal {
+            left: 60px;
+            bottom: 80px;
+            font-size: 90px;
+            font-weight: 900;
+            color: var(--blanco);
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.25);
+            line-height: 1;
+            letter-spacing: 3px;
+            z-index: 5;
+        }
+
+
+        .caja {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: absolute;
+            z-index: 10;
+            max-width: 320px;
+        }
+
+        .caja h3 {
+            color: var(--claro2);
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .caja p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: left;
+        }
+
+        .caja button {
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: linear-gradient(90deg, var(--c5), var(--c6));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+            transition: transform 0.2s;
+        }
+
+        .caja button:hover {
+            transform: scale(1.05);
+        }
+
+        .caja-con-imagen {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .caja-imagen-mini {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .caja-imagen-mini img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .boton-mas {
+            width: auto;
+            height: auto;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 8px;
+        }
+
+        .caja-1 {
+            top: 200px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+        }
+
+        .caja-1 h4 {
+            font-size: 14px;
+            color: var(--claro2);
+        }
+
+        .colores {
+            display: flex;
+            gap: 6px;
+            margin-left: 8px;
+        }
+
+        .color-cuadro {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .caja-2 {
+            top: 293px;
+            left: 40px;
+            padding: 14px 18px;
+        }
+
+        .caja-3 {
+            top: 860px;
+            left: 40px;
+            padding: 14px 18px;
+        }
+
+        .caja-4 {
+            top: 40px;
+            right: 40px;
+            max-width: 280px;
+        }
+
+        .caja-6 {
+            top: 220px;
+            right: 330px;
+            max-width: 280px;
+        }
+
+        .caja-5 {
+            top: 390px;
+            right: 40px;
+            max-width: 280px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .imagen-poder {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .tarjetas-inferior {
+            position: absolute;
+            top: 830px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 10px;
+        }
+
+        .tarjeta-mini {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            overflow: hidden;
+        }
+
+        .tarjeta-mini img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .firma {
+            position: absolute;
+            top: 990px;
+            right: 40px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            z-index: 10;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<video autoplay muted loop playsinline id="video-fondo">
+    <source src="weak6.mp4" type="video/mp4">
+</video>
+
+<button id="boton-sonido" onclick="toggleSonido()" 
+        style="position: fixed; 
+               bottom: 30px; 
+               left: 50%; 
+               transform: translateX(-50%);
+               z-index: 100; 
+               padding: 12px 25px; 
+               border-radius: 15px; 
+               background: rgba(0, 0, 0, 0.5); 
+               color: white; 
+               border: none; 
+               cursor: pointer; 
+               font-size: 16px;
+               backdrop-filter: blur(10px);
+               border: 1px solid rgba(255,255,255,0.2);">
+    🔊 Activar sonido
+</button>
+
+<script>
+function toggleSonido() {
+    const video = document.getElementById('video-fondo');
+    const boton = document.getElementById('boton-sonido');
+    
+    if (video.muted) {
+        video.muted = false;
+        video.volume = 1;
+        boton.innerHTML = '🔇 Desactivar sonido';
+    } else {
+        video.muted = true;
+        boton.innerHTML = '🔊 Activar sonido';
+    }
+}
+</script>
+
+<div class="titulo-principal">
+        WEAK<br>HERO
+    </div>
+
+    <div class="caja caja-1">
+        <div class="caja-imagen-mini">
+            <img src="color.jpg" alt="Icono">
+        </div>
+        <h4>Codigo de colores</h4>
+        <div class="colores">
+            <div class="color-cuadro" style="background: var(--claro1);"></div>
+            <div class="color-cuadro" style="background: var(--claro2);"></div>
+            <div class="color-cuadro" style="background: var(--c6);"></div>
+        </div>
+    </div>
+
+    <div class="caja caja-2 caja-con-imagen">
+        <div class="caja-imagen-mini">
+            <img src="p1.jpg" alt="Yeon Shi-eun">
+        </div>
+        <div>
+            <h3>YEON SHI-EUN</h3>
+            <p>
+◇ Estudiante brillante, el mejor de su clase, pero físicamente débil.<br>
+◇ Se defiende usando estrategia, lógica y objetos cotidianos en lugar de fuerza bruta.<br>
+◇ Se hace amigo de Su-ho tras enfrentarse a los acosadores.<br>
+◇ Tras lo ocurrido a Su-ho, se transfiere a otra escuela y se vuelve más frío y decidido.<br>
+◇ Su objetivo principal: proteger a los suyos y vencer a quienes lastimaron a su amigo.</p>
+        </div>
+        <button class="boton-mas">연시은</button>
+    </div>
+
+
+    <div class="caja caja-3 caja-con-imagen">
+        <div class="caja-imagen-mini"> 
+            <img src="p2.jfif" alt="Ahn Su-ho">
+        </div>
+        <div>
+            <h3>AHN SU-HO</h3>
+            <p>
+◇ El chico más fuerte de la clase, experto en artes marciales.<br>
+◇ De buen corazón y leal; protege a Si-eun desde el principio.<br>
+◇ Queda en coma tras ser traicionado y atacado casi hasta la muerte.<br>
+◇ Es la motivación emocional de Si-eun durante toda la historia.<br>
+◇ Al final de la temporada 1, despierta y se reencuentra con Si-eun.</p>
+        </div>
+        <button class="boton-mas">안수호</button>
+    </div>
+
+    <div class="caja caja-4">
+        <h3>ACOSO ESCOLAR</h3>
+        <p>
+Es el tema central de la serie: la violencia escolar y sus graves consecuencias.
+Muestra cómo el sistema educativo ignora el problema, dejando a las víctimas sin protección.
+Los acosadores abusan de su poder físico y social, mientras la escuela mira hacia otro lado.
+La serie denuncia la impunidad con la que operan los agresores en muchos entornos escolares.
+Refleja la realidad de muchos estudiantes que sufren en silencio sin ayuda de adultos.</p>
+    </div>
+
+    <div class="caja caja-5">
+        <div class="imagen-poder">
+            <img src="caja.jpg" alt="Estrategia" width="100%" height="100%">
+        </div>
+        <div>
+            <h3>ESTRATEGIA & INTELIGENCIA</h3>
+            <p>
+Shi-eun no pelea con fuerza, sino con inteligencia y análisis del entorno.
+Utiliza objetos comunes, física y psicología para neutralizar a oponentes mucho más fuertes.
+Cada pelea es un plan calculado, no un acto de impulso ni violencia desmedida.
+Demuestra que la mente puede ser un arma más poderosa que los puños.</p>
+            <button>Leer más</button>
+        </div>
+    </div>
+
+    <div class="caja caja-6">
+        <h3>¿QUÉ ES WEAK HERO?</h3>
+        <p>
+Es Serie surcoreana basada en el webtoon del mismo nombre de Seo Pass y Kim Jin-seok.
+Fue estrenada en 2022, dirigida por Yoo Min-shik y protagonizada por Park Ji-hoon, Choi Hyun-wook y Hong Kyung.
+Narra la historia de Yeon Shi-eun, un estudiante de alto rendimiento que enfrenta el acoso escolar sin recurrir a la fuerza bruta.
+Explora temas profundos como la amistad, la lealtad, la violencia y el despertar de la voluntad de sobrevivir en un entorno hostil.
+Su mensaje principal: la fuerza física no lo es todo; la mente y la determinación pueden ser las armas más poderosas.</p>
+    </div>
+
+    <div class="tarjetas-inferior">
+        <div class="tarjeta-mini">
+            <img src="mini1.webp" alt="Miniatura 1">
+        </div>
+        <div class="tarjeta-mini">
+            <img src="mini2.webp" alt="Miniatura 2">
+        </div>
+        <div class="tarjeta-mini">
+            <img src="mini3.jfif" alt="Miniatura 3">
+        </div>
+    </div>
+
+    <div class="firma">NOMBRE: ALLISON ABAD HINOJOSA<br>
+                       CURSO: 3RO INFORMATICA "A" </div>
+
+</body>
+</html>
